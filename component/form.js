@@ -2,7 +2,7 @@ import React  from 'react';
 import { StyleSheet , View, Button ,TextInput, Text, TouchableWithoutFeedback,keyboard, ScrollView} from 'react-native';
 import {Formik, Form} from 'formik';
 import * as yup from 'yup';
-import Example from './state';
+import Select from 'react-native-picker-select';
 
 const em = /\s.\@\s+\.\s+ /;
 
@@ -17,12 +17,16 @@ const Schema = yup.object({
 export default function ReviewForm() {
     return(
       <ScrollView>
+
       <TouchableWithoutFeedback onPress={() => {keyboard.dismiss();}}>
+        
         <Formik 
-        initialValues={{name : '' , email : '' , password :'' , confirmPassword :'' ,number :''}}
+        initialValues={{name : '' , email : '' , password :'' , confirmPassword :'' ,number :'', state : ''}}
         validationSchema={Schema}
-        onSubmit = {(values) =>{console.log(values); console.log(sta);}}
+        onSubmit = {(values) =>{console.log(values); }}
         >
+
+
         {(props) => (
           <View>
             <Text style={styles.text}>NAME:</Text>
@@ -64,45 +68,137 @@ export default function ReviewForm() {
             onChangeText={props.handleChange('number')}
             value={props.values.number}/>
             <Text style={styles.errp}>{props.touched.number && props.errors.number}</Text>
-            <Example />
+            <Text style={styles.text}>STATE:</Text>
+            <Select
+            
+            placeholder={{label : 'SELECT STATE',value:null}}
+            onValueChange={props.handleChange('state')}
+            items={[{
+              label:'Andra Pradesh',
+              value:'Andra Pradesh' ,
+              } ,
+             {
+              label:'ArunachalPradesh',
+              value: 'ArunachalPradesh',
+          
+            },
+            {  label:'Assam',
+              value: 'Assam',
+            },
+            {  label:'Bihar',
+              value: 'Bihar',
+            },
+            {  label:'Chhattisgarh',
+              value: 'Chhattisgarh',
+            },
+           {  label:'Goa',
+               value: 'Goa',
+           },
+           {  label:'Gujarat',
+              value: 'Gujarat',
+           },
+           {
+            label:'Haryana',
+            value: 'Haryana',
+          },
+          {  label:'Himachal Pradesh',
+              value:'Himachal Pradesh' ,
+          },
+          {  label:'Jammu and Kashmir',
+              value: 'Jammu and Kashmir',
+          },
+          {  label:'Jharkhand',
+              value: 'Jharkhand' ,
+          },
+          {  label:'Karnataka',
+              value: 'Karnataka',
+          },
+          {  label:'Kerala',
+              value: 'Kerala',
+          },
+          {  label:'Madhya Pradesh',
+              value: 'Madhya Pradesh',
+          },
+          {  label:'Maharashtra',
+              value: 'Maharashtra',
+          },
+          {  label:'Manipur',
+              value: 'Manipur',
+          },
+          {  label:'Meghalaya',
+              value: 'Meghalaya',
+          },
+          {  label:'Mizhoram',
+              value:'Mizhoram' ,
+          },
+          {  label:'Nagaland',
+              value: 'Nagaland',
+          },
+          {  label:'Odisha',
+              value: 'Odisha',
+          },
+          {  label:'Punjab',
+              value: 'Punjab',
+          },
+          {  label:'Rajasthan',
+              value: 'Rajasthan',
+          },
+          {  label:'Sikkim',
+              value: 'Sikkim',
+          },
+          {label:'Tamil Nadu',
+              value: 'Tamil Nadu',
+          },
+          {label:'Telangana',
+              value: 'Telangana',
+          },
+          {label:'Tripura',
+              value: 'Tripura',
+          },
+          {label:'Uttar Pradesh',
+              value:'Uttar Pradesh' ,
+          },
+          {label:'Uttarakhand',
+              value: 'Uttarakhand',
+          },
+          {label:'West Bengal',
+              value: 'West Bengal',
+          }]
+        }/>
+             
             <Button title='SUBMIT' color='maroon' onPress={props.handleSubmit}/>
+
           </View>
 
-        )}</Formik>
+)}</Formik>
         
       </TouchableWithoutFeedback>
       </ScrollView>
       
     
     
-     ) }
+      ) }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    
-  },
+  
  text:{
-  fontFamily:'serif',
-  color:'purple',
-  fontWeight:'bold',
-  marginTop: 10,
-  fontSize:18
- },
+     fontFamily:'serif',
+     color:'purple',
+     fontWeight:'bold',
+     marginTop: 10,
+     fontSize:18
+  },
  input:{
-   borderColor: 'black',
-   borderWidth: 1,
-   margin:10,
-   padding:5,
-   fontSize: 18,
-   borderRadius: 6,
+      borderColor: 'black',
+      borderWidth: 1,
+      margin:10,
+      padding:5,
+      fontSize: 18,
+      borderRadius: 6,
  },
  errp:{
-color: 'red',
-alignItems: 'center'
+      color: 'red',
+      alignItems: 'center'
  }
 });
 
